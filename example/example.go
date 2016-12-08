@@ -19,8 +19,8 @@ func main() {
 
 	// See who matches this
 	fmt.Println(kw.MatchedUsers("Hello, world!"))            // [1 2 3]
-	fmt.Println(kw.MatchedUsers("This is an example World")) // [3]
+	fmt.Println(kw.MatchedUsers("This is an example World")) // [2 3]
 
 	kw.Remove("world", 3)
-	fmt.Println(kw.MatchedUsers("This is an example World")) // []
+	fmt.Println(kw.MatchedUsers("This is an example World")) // [2]
 }
