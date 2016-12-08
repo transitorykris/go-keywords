@@ -14,6 +14,7 @@ func main() {
 	kw.Add("hello", 1)
 	kw.Add("Hello", 1)
 	kw.Add("hello", 2)
+	kw.Add("world", 2)
 	kw.Add("WORLD", 3)
 
 	// See who matches this

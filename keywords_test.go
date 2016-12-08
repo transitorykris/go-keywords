@@ -73,6 +73,7 @@ func TestMatchedUsers(t *testing.T) {
 		})
 		Convey("And there is a single matching user", func() {
 			kw := New()
+			kw.Add("hello", 1)
 			kw.Add("Keywords", 1)
 			users := kw.MatchedUsers("Hello, Keywords!")
 			So(users, ShouldResemble, []int64{1})
