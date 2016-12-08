@@ -10,7 +10,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/transitorykris/keywords"
+	"github.com/transitorykris/go-keywords"
 )
 
 func main() {
