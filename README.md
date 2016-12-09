@@ -30,5 +30,8 @@ func main() {
 
 	kw.Remove("world", 3)
 	fmt.Println(kw.Find("This is an example World")) // [2]
+
+	fmt.Println(kw.Match("Thanks for all the fish")) // false
+	fmt.Println(kw.Match("So long, World!"))         // true
 }
 ```
