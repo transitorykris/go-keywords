@@ -1,6 +1,8 @@
 # Keywords
 
-A little package for matching up keywords and IDs found in strings of text.
+This package came out of a need to multiple keywords for multiple users interested
+in the same lines of text. I'm using int64s as IDs since it's convenient for my
+use case.
 
 ## Example usage
 
