@@ -1,6 +1,7 @@
 package keywords
 
 import (
+	"fmt"
 	"testing"
 
 	. "github.com/smartystreets/goconvey/convey"
@@ -108,4 +109,38 @@ func TestMatchedUsers(t *testing.T) {
 			So(matched, ShouldBeFalse)
 		})
 	})
+}
+
+// Adds the id 1 to the keyword _hello_
+func ExampleKeywords_Add() {
+	kw := New()
+	kw.Add("hello", 1) // kw has now associated _hello_ with id 1
+}
+
+// Removes the id 1 from the keyword _hello_
+func ExampleKeywords_Remove() {
+	kw := New()
+	kw.Add("hello", 1)
+	kw.Remove("hello", 1) // kw is empty again
+}
+
+// Finds all ids interested in keywords in the given text
+func ExampleKeywords_Find() {
+	kw := New()
+	kw.Add("hello", 1)
+	kw.Add("world", 2)
+	fmt.Println(kw.Find("Hello World"))
+	// Output:
+	// [1 2]
+}
+
+// Match returns true if at least one id is interested in a keyword
+func ExampleKeywords_Match() {
+	kw := New()
+	kw.Add("hello", 1)
+	fmt.Println(kw.Match("Hello World"))
+	fmt.Println(kw.Match("So long"))
+	// Output:
+	// true
+	// false
 }
