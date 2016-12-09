@@ -65,17 +65,19 @@ func TestMatchedUsers(t *testing.T) {
 	Convey("Given a line of text", t, func() {
 		Convey("And there is no matching user", func() {
 			kw := New()
-			users := kw.MatchedUsers("This line does not match anything")
+			users := kw.Find("This line does not match anything")
 			So(users, ShouldBeNil)
 		})
 		Convey("And the text is empty", func() {
-
+			kw := New()
+			users := kw.Find("")
+			So(users, ShouldBeNil)
 		})
 		Convey("And there is a single matching user", func() {
 			kw := New()
 			kw.Add("hello", 1)
 			kw.Add("Keywords", 1)
-			users := kw.MatchedUsers("Hello, Keywords!")
+			users := kw.Find("Hello, Keywords!")
 			So(users, ShouldResemble, []int64{1})
 		})
 		Convey("And there are multiple matching users", func() {
@@ -83,8 +85,27 @@ func TestMatchedUsers(t *testing.T) {
 			kw.Add("hello", 1)
 			kw.Add("keywords", 2)
 			kw.Add("keywords", 3)
-			users := kw.MatchedUsers("Hello, Keywords!")
+			users := kw.Find("Hello, Keywords!")
 			So(users, ShouldResemble, []int64{1, 2, 3})
+		})
+	})
+
+	Convey("When checking if a line matches or not", t, func() {
+		Convey("And it does not match", func() {
+			kw := New()
+			matched := kw.Match("Nothing will match this")
+			So(matched, ShouldBeFalse)
+		})
+		Convey("And it does match", func() {
+			kw := New()
+			kw.Add("match", 1)
+			matched := kw.Match("This will match!")
+			So(matched, ShouldBeTrue)
+		})
+		Convey("And the string is empty", func() {
+			kw := New()
+			matched := kw.Match("")
+			So(matched, ShouldBeFalse)
 		})
 	})
 }

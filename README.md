@@ -1,6 +1,8 @@
 # Keywords
 
-A little package for matching up keywords and IDs found in strings of text.
+This package came out of a need to multiple keywords for multiple users interested
+in the same lines of text. I'm using int64s as IDs since it's convenient for my
+use case.
 
 ## Example usage
 
@@ -25,10 +27,13 @@ func main() {
 	kw.Add("WORLD", 3)
 
 	// See who matches this
-	fmt.Println(kw.MatchedUsers("Hello, world!"))            // [1 2 3]
-	fmt.Println(kw.MatchedUsers("This is an example World")) // [2 3]
+	fmt.Println(kw.Find("Hello, world!"))            // [1 2 3]
+	fmt.Println(kw.Find("This is an example World")) // [2 3]
 
 	kw.Remove("world", 3)
-	fmt.Println(kw.MatchedUsers("This is an example World")) // [2]
+	fmt.Println(kw.Find("This is an example World")) // [2]
+
+	fmt.Println(kw.Match("Thanks for all the fish")) // false
+	fmt.Println(kw.Match("So long, World!"))         // true
 }
 ```
