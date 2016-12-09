@@ -65,7 +65,7 @@ func TestMatchedUsers(t *testing.T) {
 	Convey("Given a line of text", t, func() {
 		Convey("And there is no matching user", func() {
 			kw := New()
-			users := kw.MatchedUsers("This line does not match anything")
+			users := kw.Find("This line does not match anything")
 			So(users, ShouldBeNil)
 		})
 		Convey("And the text is empty", func() {
@@ -75,7 +75,7 @@ func TestMatchedUsers(t *testing.T) {
 			kw := New()
 			kw.Add("hello", 1)
 			kw.Add("Keywords", 1)
-			users := kw.MatchedUsers("Hello, Keywords!")
+			users := kw.Find("Hello, Keywords!")
 			So(users, ShouldResemble, []int64{1})
 		})
 		Convey("And there are multiple matching users", func() {
@@ -83,7 +83,7 @@ func TestMatchedUsers(t *testing.T) {
 			kw.Add("hello", 1)
 			kw.Add("keywords", 2)
 			kw.Add("keywords", 3)
-			users := kw.MatchedUsers("Hello, Keywords!")
+			users := kw.Find("Hello, Keywords!")
 			So(users, ShouldResemble, []int64{1, 2, 3})
 		})
 	})

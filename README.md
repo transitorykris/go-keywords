@@ -25,10 +25,10 @@ func main() {
 	kw.Add("WORLD", 3)
 
 	// See who matches this
-	fmt.Println(kw.MatchedUsers("Hello, world!"))            // [1 2 3]
-	fmt.Println(kw.MatchedUsers("This is an example World")) // [2 3]
+	fmt.Println(kw.Find("Hello, world!"))            // [1 2 3]
+	fmt.Println(kw.Find("This is an example World")) // [2 3]
 
 	kw.Remove("world", 3)
-	fmt.Println(kw.MatchedUsers("This is an example World")) // [2]
+	fmt.Println(kw.Find("This is an example World")) // [2]
 }
 ```

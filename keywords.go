@@ -43,7 +43,7 @@ func (k *Keywords) Remove(word string, user int64) {
 }
 
 // words returns all the words in a string as lowercase
-func words(text string) []string {
+func splitWords(text string) []string {
 	text = strings.ToLower(text)
 	words := strings.FieldsFunc(text, func(c rune) bool {
 		return !unicode.IsLetter(c) && !unicode.IsNumber(c)
@@ -51,9 +51,9 @@ func words(text string) []string {
 	return words
 }
 
-// MatchedUsers returns a slice of user IDs interested in at least one word
-func (k *Keywords) MatchedUsers(text string) []int64 {
-	words := words(text)
+// Find returns a slice of user IDs interested in at least one word
+func (k *Keywords) Find(text string) []int64 {
+	words := splitWords(text)
 	matched := make(map[int64]bool)
 	var users []int64
 	for _, word := range words {
