@@ -69,7 +69,9 @@ func TestMatchedUsers(t *testing.T) {
 			So(users, ShouldBeNil)
 		})
 		Convey("And the text is empty", func() {
-
+			kw := New()
+			users := kw.Find("")
+			So(users, ShouldBeNil)
 		})
 		Convey("And there is a single matching user", func() {
 			kw := New()
@@ -99,6 +101,11 @@ func TestMatchedUsers(t *testing.T) {
 			kw.Add("match", 1)
 			matched := kw.Match("This will match!")
 			So(matched, ShouldBeTrue)
+		})
+		Convey("And the string is empty", func() {
+			kw := New()
+			matched := kw.Match("")
+			So(matched, ShouldBeFalse)
 		})
 	})
 }
