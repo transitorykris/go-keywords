@@ -70,3 +70,14 @@ func (k *Keywords) Find(text string) []int64 {
 	}
 	return users
 }
+
+// Match returns true if at least one word matches a keyword
+func (k *Keywords) Match(text string) bool {
+	words := splitWords(text)
+	for _, word := range words {
+		if _, ok := k.kw[word]; ok {
+			return true
+		}
+	}
+	return false
+}

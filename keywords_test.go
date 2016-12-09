@@ -87,4 +87,18 @@ func TestMatchedUsers(t *testing.T) {
 			So(users, ShouldResemble, []int64{1, 2, 3})
 		})
 	})
+
+	Convey("When checking if a line matches or not", t, func() {
+		Convey("And it does not match", func() {
+			kw := New()
+			matched := kw.Match("Nothing will match this")
+			So(matched, ShouldBeFalse)
+		})
+		Convey("And it does match", func() {
+			kw := New()
+			kw.Add("match", 1)
+			matched := kw.Match("This will match!")
+			So(matched, ShouldBeTrue)
+		})
+	})
 }
